@@ -3,6 +3,7 @@ python-dotenv
 ipykernel
 langchain-community
 pypdf
+beautifulsoup4
 bs4
 arxiv
 pymupdf
