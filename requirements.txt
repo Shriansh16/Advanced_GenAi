@@ -20,3 +20,4 @@ pandas
 openai
 langchain-groq
 duckduckgo-search
+langchain_core
