@@ -21,3 +21,6 @@ openai
 langchain-groq
 duckduckgo-search
 langchain_core
+fastapi
+uvicorn
+langserve
