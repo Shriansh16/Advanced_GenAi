@@ -20,9 +20,9 @@ prompt=ChatPromptTemplate.from_messages(
 )
 def generate_response(question,api_key,llm,temperature,max_tokens):
     openai.api_key=api_key
-    llm=ChatOpenAI(model=llm)
-    output_parser=StrOutputParser
-    chain=prompt|llm|output_parser
+    llm1=ChatOpenAI(model=llm)
+    output_parser=StrOutputParser()
+    chain=prompt|llm1|output_parser
     answer=chain.invoke({'question':question})
     return answer
 #TITLE OF THE APP
@@ -33,7 +33,7 @@ st.sidebar.title("Settings")
 api_key=st.sidebar.text_input("Enter your Open AI API Key:",type="password")
 
 ## Select the OpenAI model
-engine=st.sidebar.selectbox("Select Open AI model",["gpt-4o","gpt-4-turbo","gpt-4"])
+llm=st.sidebar.selectbox("Select Open AI model",["gpt-4o","gpt-4-turbo","gpt-4"])
 
 ## Adjust response parameter
 temperature=st.sidebar.slider("Temperature",min_value=0.0,max_value=1.0,value=0.7)
