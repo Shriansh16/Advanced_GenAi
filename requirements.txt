@@ -29,3 +29,6 @@ youtube_transcript_api
 unstructured
 pytube
 huggingface_hub
+gradio
+pyaudio
+SpeechRecognition
