@@ -61,13 +61,14 @@ response_container = st.container()
 text_container = st.container()
 
 
+
 with text_container:
-    query = st.text_input("Query: ", key="input")
-    st.write("Click the button below and start speaking.")
-    result=None
-    if st.button('Click here to record'):
-        #st.write("Recording...")
+    query = st.text_input("Enter your query: ", key="input")
+    st.divider()
+    if st.button('🎤 Click here to speak', key="natural_speech"):
         result = recognize_speech()
+    else:
+        result = None
     user_query=query if query else result
 
     if user_query:
@@ -86,7 +87,7 @@ st.markdown(
     """
     <style>
     [data-testid="stChatMessageContent"] p{
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     </style>
     """, unsafe_allow_html=True
