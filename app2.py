@@ -12,23 +12,13 @@ from langchain.prompts import (
     MessagesPlaceholder
 )
 from utils1 import *
-import base64
+from Speech_Recognizer import *
 import speech_recognition as sr
 
 # Load environment variables
 load_dotenv()
 KEY = os.getenv("OPENAI_API_KEY")
 #KEY=st.secrets["OPENAI_API_KEY"]
-recognizer = sr.Recognizer()
-def recognize_speech():
-    with sr.Microphone() as source:
-        status_message = st.empty()
-        status_message.write("Listening... Please speak clearly.")
-        audio = recognizer.listen(source)
-        status_message.write("Processing...")
-        text = recognizer.recognize_google(audio)
-        status_message.empty()  # Clear the status message
-        return text
 # Streamlit setup
 st.subheader("HELPDESK CHAT")
 
@@ -47,7 +37,7 @@ if 'buffer_memory' not in st.session_state:
 
 # Define prompt templates
 system_msg_template = SystemMessagePromptTemplate.from_template(template="""Answer the question in a friendly and helpful manner, as if you are a real helpdesk support agent. Use only the information provided in the context below, and avoid phrases like 'In the context of the provided documents' or similar. If the answer is not contained within the text, say 'I'm not sure about that, but I'm here to help with anything else you need!'""")
-                                                                           #Answer the question in a friendly and helpful manner, as if you are a real helpdesk support agent. Use only the information provided in the context below, and avoid phrases like 'In the context of the provided documents' or similar. If the answer is not contained within the text, say 'I'm not sure about that, but I'm here to help with anything else you need!'
+                                                                           
 human_msg_template = HumanMessagePromptTemplate.from_template(template="{input}")
 
 prompt_template = ChatPromptTemplate.from_messages([system_msg_template, MessagesPlaceholder(variable_name="history"), human_msg_template])
@@ -75,8 +65,6 @@ with text_container:
         with st.spinner("typing..."):
             conversation_string = get_conversation_string()
             refined_query = query_refiner(conversation_string, user_query)
-            #st.subheader("Refined Query:")
-            #st.write(refined_query)
             context = find_match(refined_query)
             response = conversation.predict(input=f"Context:\n{context}\n\nQuery:\n{user_query}")
         
@@ -103,7 +91,3 @@ with response_container:
             if i < len(st.session_state['requests']):
                 message(st.session_state["requests"][i], is_user=True, key=str(i) + '_user')
 
-#message("Hey, \nwhat's a chatbot?", is_user=True, avatar="{URL}")
-#message(st.session_state['responses'][i], key=str(i),avatar_style="😂")
-#message(st.session_state["requests"][i], is_user=True, key=str(i) + '_user')
-#"""Answer the question in a friendly and helpful manner, as if you are a real helpdesk support agent. Provide accurate information based on the context provided. If you don't know the answer, simply say 'I'm not sure, but I'll find out for you!' or offer to assist with something else."""
