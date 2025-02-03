@@ -9,11 +9,11 @@ def create_reddit_instance():
     """
     try:
         reddit = praw.Reddit(
-            client_id="dR3XNR8_eMd2b2yw9iMhpg",
-            client_secret="VfW-2yydC88LfK2sUKA_gK3zzm-SAg",
-            user_agent="script:post_creator:v1.0 (by /u/brucewayne)",
-            username="MuchFootball4622",
-            password="shriansh99"
+            client_id="",
+            client_secret="",
+            user_agent="",
+            username="",
+            password=""
         )
         return reddit
     except Exception as e:
