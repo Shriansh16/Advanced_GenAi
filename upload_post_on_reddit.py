@@ -19,11 +19,11 @@ def create_reddit_instance():
     """Create and return a Reddit instance using PRAW."""
     try:
         reddit = praw.Reddit(
-            client_id="RvBbSPYFh_yV_x6VZE6r_Q",
-            client_secret="i_96f7YhYftzoLHX-CTV_N7LrcK7EA",
-            user_agent="script:post_creator:v1.0 (by /u/MyApp2)",
-            username="Acrobatic-Visit-5454",
-            password="reddit#123"
+            client_id="",
+            client_secret="",
+            user_agent=")",
+            username="",
+            password=""
         )
         return reddit
     except Exception as e:
