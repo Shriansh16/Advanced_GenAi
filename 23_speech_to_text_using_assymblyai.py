@@ -1,6 +1,6 @@
 import assemblyai as aai
 
-aai.settings.api_key = "551dfcff51044bddb82c8cb562046329"
+aai.settings.api_key = ""
 
 # Audio file path
 audio_file = "meeting_with_neighbour.wav"
